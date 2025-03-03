@@ -25,7 +25,7 @@ func NewRoleController() *RoleController {
 }
 
 func (ctrl *RoleController) GetByName(c *gin.Context) {
-	name := c.Param("name")
+	name := c.Query("name")
 	role, err := ctrl.Service.GetByName(name)
 	if err != nil {
 		c.JSON(http.StatusNotFound, baseModel.BaseResponse{

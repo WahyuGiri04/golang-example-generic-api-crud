@@ -18,5 +18,6 @@ func SetupRoutes(route *gin.Engine) {
 		roleRoutes.PUT("/update", RoleController.Update)
 		roleRoutes.DELETE("/delete", RoleController.Delete)
 		roleRoutes.GET("/get-pagination", RoleController.GetPagination)
+		roleRoutes.GET("/get-by-name", RoleController.GetByName)
 	}
 }
