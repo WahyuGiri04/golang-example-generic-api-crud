@@ -33,8 +33,7 @@ func RegisterServiceWithConsul() {
 		Port:    atoi(servicePort),
 		Address: serviceHost,
 		Check: &api.AgentServiceCheck{
-			// HTTP:     fmt.Sprintf("http://%s:%s/health", serviceHost, servicePort),
-			HTTP:     "http://127.0.0.1:3001/health",
+			HTTP:     fmt.Sprintf("http://%s:%s/health", serviceHost, servicePort),
 			Interval: "10s",
 			Timeout:  "5s",
 		},

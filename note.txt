@@ -1,0 +1,3 @@
+- jika consul menggunakan docker maka untuk health check haru cek ip routnya :
+    - ip route | grep default
+- gunakan ip yang ada di default route
