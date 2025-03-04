@@ -56,3 +56,15 @@ func (s *BaseService[T]) GetPagination(page, pageSize int, entities *[]T) (baseM
 		Data: entities,
 	}, nil
 }
+
+func (s *BaseService[T]) GetByField(field, value string) ([]T, error) {
+	var entities []T
+	err := s.DB.Where(field+" LIKE ?", "%"+value+"%").Find(&entities).Error
+	return entities, err
+}
+
+func (s *BaseService[T]) FindByName(name string) ([]T, error) {
+	var entities []T
+	err := s.DB.Where("name LIKE ?", "%"+name+"%").Find(&entities).Error
+	return entities, err
+}

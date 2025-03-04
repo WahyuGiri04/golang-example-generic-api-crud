@@ -3,12 +3,7 @@ package controller
 import (
 	baseController "golang-example-generic-api-crud/controller/base"
 	"golang-example-generic-api-crud/model"
-	baseModel "golang-example-generic-api-crud/model/base"
 	"golang-example-generic-api-crud/service"
-	"golang-example-generic-api-crud/util"
-	"net/http"
-
-	"github.com/gin-gonic/gin"
 )
 
 type RoleController struct {
@@ -24,20 +19,20 @@ func NewRoleController() *RoleController {
 	}
 }
 
-func (ctrl *RoleController) GetByName(c *gin.Context) {
-	name := c.Query("name")
-	role, err := ctrl.Service.GetByName(name)
-	if err != nil {
-		c.JSON(http.StatusNotFound, baseModel.BaseResponse{
-			Status:  util.Failed,
-			Message: "Role not found",
-		})
-		return
-	}
+// func (ctrl *RoleController) GetByName(c *gin.Context) {
+// 	name := c.Query("name")
+// 	role, err := ctrl.Service.GetByName(name)
+// 	if err != nil {
+// 		c.JSON(http.StatusNotFound, baseModel.BaseResponse{
+// 			Status:  util.Failed,
+// 			Message: "Role not found",
+// 		})
+// 		return
+// 	}
 
-	c.JSON(http.StatusOK, baseModel.BaseResponse{
-		Status:  util.Success,
-		Message: "Success get role",
-		Data:    role,
-	})
-}
+// 	c.JSON(http.StatusOK, baseModel.BaseResponse{
+// 		Status:  util.Success,
+// 		Message: "Success get role",
+// 		Data:    role,
+// 	})
+// }

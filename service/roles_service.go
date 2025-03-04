@@ -15,8 +15,8 @@ func NewRoleService() *RoleService {
 	}
 }
 
-func (s *RoleService) GetByName(name string) ([]model.Role, error) {
-	var roles []model.Role
-	err := s.DB.Where("name LIKE ? ", "%"+name+"%").Find(&roles).Error
-	return roles, err
-}
+// func (s *RoleService) GetByName(name string) ([]model.Role, error) {
+// 	var roles []model.Role
+// 	err := s.DB.Where("name LIKE ? ", "%"+name+"%").Find(&roles).Error
+// 	return roles, err
+// }

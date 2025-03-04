@@ -120,3 +120,41 @@ func (ctrl *BaseController[T]) GetPagination(c *gin.Context) {
 		Data:    pagination,
 	})
 }
+
+func (ctrl *BaseController[T]) GetByField(c *gin.Context) {
+	field := c.DefaultQuery("field", "name") // Default cari berdasarkan "name"
+	value := c.Query("value")
+
+	results, err := ctrl.Service.GetByField(field, value)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, baseModel.BaseResponse{
+			Status:  util.Failed,
+			Message: "Failed to get data",
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, baseModel.BaseResponse{
+		Status:  util.Success,
+		Message: "Success get data",
+		Data:    results,
+	})
+}
+
+func (ctrl *BaseController[T]) FindByName(c *gin.Context) {
+	name := c.Query("name")
+	results, err := ctrl.Service.FindByName(name)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, baseModel.BaseResponse{
+			Status:  util.Failed,
+			Message: "Failed to get data",
+		})
+		return
+	}
+
+	c.JSON(http.StatusOK, baseModel.BaseResponse{
+		Status:  util.Success,
+		Message: "Success get data",
+		Data:    results,
+	})
+}

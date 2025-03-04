@@ -2,6 +2,7 @@ package routes
 
 import (
 	"golang-example-generic-api-crud/controller"
+	"golang-example-generic-api-crud/middleware"
 	"os"
 
 	"github.com/gin-gonic/gin"
@@ -11,6 +12,7 @@ func SetupRoutes(route *gin.Engine) {
 	var path = os.Getenv("CONTEXT_PATH")
 	RoleController := controller.NewRoleController()
 	roleRoutes := route.Group(path + "/role")
+	roleRoutes.Use(middleware.AuthMiddleware())
 	{
 		roleRoutes.POST("/create", RoleController.Create)
 		roleRoutes.GET("/get-all", RoleController.GetAll)
@@ -18,6 +20,7 @@ func SetupRoutes(route *gin.Engine) {
 		roleRoutes.PUT("/update", RoleController.Update)
 		roleRoutes.DELETE("/delete", RoleController.Delete)
 		roleRoutes.GET("/get-pagination", RoleController.GetPagination)
-		roleRoutes.GET("/get-by-name", RoleController.GetByName)
+		roleRoutes.GET("/get-by-field", RoleController.GetByField)
+		roleRoutes.GET("/get-by-name", RoleController.FindByName)
 	}
 }
