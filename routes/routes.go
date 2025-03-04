@@ -10,6 +10,7 @@ import (
 
 func SetupRoutes(route *gin.Engine) {
 	var path = os.Getenv("CONTEXT_PATH")
+
 	RoleController := controller.NewRoleController()
 	roleRoutes := route.Group(path + "/role")
 	roleRoutes.Use(middleware.AuthMiddleware())
